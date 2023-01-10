@@ -18,32 +18,33 @@ const {
   Code,
 } = require("react-ast");
 
-module.exports = () => {
-  const code = render(
-    <>
-      <Import default="React" from="react" />
+const code = render(
+  <>
+    <Import default="React" from="react" />
 
-      <Var kind={VarKind.Const} name="Hello">
-        <Function arrow params={[<Identifier>props</Identifier>]}>
-          <Return>
-            <JSX />
-          </Return>
-        </Function>
-      </Var>
+    <Var kind={VarKind.Const} name="Hello">
+      <Function arrow params={[<Identifier>props</Identifier>]}>
+        <Return>
+          <JSX />
+        </Return>
+      </Function>
+    </Var>
 
-      <Expression properties="Hello.defaultProps">{{}}</Expression>
-      <Export default>
-        <Identifier>Hello</Identifier>
-      </Export>
-    </>,
-    {
-      parserOptions: {
-        plugins: ["jsx", "classProperties"],
-      },
-    }
-  );
+    <Expression properties="Hello.defaultProps">{{}}</Expression>
+    <Export default>
+      <Identifier>Hello</Identifier>
+    </Export>
+  </>,
+  {
+    prettier: false,
+    parser: "babel",
+    parserOptions: {
+      plugins: ["jsx", "classProperties"],
+    },
+  }
+);
 
-  console.debug("react-ast sample:", { code });
+// console.log("react-ast generated code:\n\n", code);
+process.stdout.write("react-ast generated code:\n\n" + code + "\n");
 
-  return code;
-};
+module.exports = code;

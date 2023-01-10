@@ -20,9 +20,23 @@ exports.load = async (req, res, next, id) => {
  * Get test list
  * @public
  */
-exports.list = async (req, res, next) => {
+exports.generateAst = async (req, res, next) => {
   try {
     const result = await Test.generateAst(req.query, res, next);
+
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * Get test list
+ * @public
+ */
+exports.generateCode = async (req, res, next) => {
+  try {
+    const result = await Test.generateCode(req.query, res, next);
 
     res.json(result);
   } catch (error) {

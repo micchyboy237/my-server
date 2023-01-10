@@ -45,6 +45,6 @@ const code = render(
 );
 
 // console.log("react-ast generated code:\n\n", code);
-process.stdout.write("react-ast generated code:\n\n" + code + "\n");
+process.stdout.write(JSON.stringify(code));
 
 module.exports = code;

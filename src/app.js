@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const compression = require("compression");
@@ -9,6 +10,8 @@ const { logs } = require("./config/vars");
 const error = require("./middlewares/error");
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, "../public")));
 
 // set security HTTP headers
 app.use(helmet());
